@@ -1,0 +1,40 @@
+MODULE = winewayland.drv
+UNIXLIB = winewayland.so
+UNIX_CFLAGS = $(WAYLAND_CLIENT_CFLAGS) $(WAYLAND_CURSOR_CFLAGS) $(XKBCOMMON_CFLAGS) \
+              $(GBM_CFLAGS) $(UDEV_CFLAGS) $(DRM_CFLAGS)
+UNIX_LIBS = -lwin32u -lm $(WAYLAND_CLIENT_LIBS) $(WAYLAND_CURSOR_LIBS) \
+            $(XKBCOMMON_LIBS) $(GBM_LIBS) $(UDEV_LIBS) $(DRM_LIBS) $(PTHREAD_LIBS)
+
+C_SRCS = \
+	display.c \
+	dllmain.c \
+	gbm.c \
+	gdi.c \
+	options.c \
+	registry.c \
+	unicode.c \
+	wayland.c \
+	wayland_buffer_queue.c \
+	wayland_cursor.c \
+	wayland_dmabuf.c \
+	wayland_keyboard.c \
+	wayland_keyboard_layout.c \
+	wayland_mutex.c \
+	wayland_native_buffer.c \
+	wayland_output.c \
+	wayland_pointer.c \
+	wayland_shm.c \
+	wayland_shmfd.c \
+	wayland_surface.c \
+	waylanddrv_main.c \
+	window.c \
+	window_surface.c \
+	xkb_util.c \
+
+WAYLAND_PROTOCOL_SRCS = \
+	$(WAYLAND_PROTOCOLS_DATADIR)/stable/viewporter/viewporter.xml \
+	$(WAYLAND_PROTOCOLS_DATADIR)/stable/xdg-shell/xdg-shell.xml \
+	$(WAYLAND_PROTOCOLS_DATADIR)/unstable/linux-dmabuf/linux-dmabuf-unstable-v1.xml \
+	$(WAYLAND_PROTOCOLS_DATADIR)/unstable/xdg-output/xdg-output-unstable-v1.xml \
+
+RC_SRCS = version.rc
